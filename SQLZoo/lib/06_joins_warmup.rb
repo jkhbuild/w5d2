@@ -48,6 +48,12 @@ end
 def year_of_kane
   # Give year of 'Citizen Kane'.
   execute(<<-SQL)
+  SELECT
+    yr
+  FROM
+    movies
+  WHERE
+    title='Citizen Kane'
   SQL
 end
 
@@ -56,12 +62,21 @@ def trek_films
   # these movies include the words Star Trek in the title). Order results by
   # year.
   execute(<<-SQL)
+  SELECT
+    id, title, yr
+  FROM
+    movies
+  WHERE
+    title LIKE 'Star Trek%'
+  ORDER BY
+    yr asc
   SQL
 end
 
 def films_by_id
   # What are the titles of the films with id 1119, 1595, 1768?
   execute(<<-SQL)
+  
   SQL
 end
 
@@ -73,7 +88,9 @@ end
 
 def casablanca_id
   # What is the id of the film 'Casablanca'?
+  #27
   execute(<<-SQL)
+  
   SQL
 end
 
@@ -81,6 +98,16 @@ def casablanca_cast
   # Obtain the cast list for 'Casablanca'. Use the id value that you obtained
   # in the previous question directly in your query (for example, id = 1).
   execute(<<-SQL)
+  SELECT
+    name
+  FROM
+    actors
+  JOIN
+    castings
+  ON
+    actor_id = id
+  WHERE
+    movie_id = 27;
   SQL
 end
 
